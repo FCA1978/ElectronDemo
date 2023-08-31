@@ -13,9 +13,27 @@
     <title>Hello from Electron renderer!</title>
   </head>
   <body>
-    <h1>Hello from Electron renderer!</h1>
     <p>👋</p>
-    <p id="info"></p>
+    <button id="btn">添加新的窗口</button>
+    <script>
+      const { log } = console;
+      // 导入remote中的BrowserWindow
+      const { BrowserWindow } = require("electron").remote;
+
+      const btn = document.getElementById("btn");
+      btn.onclick = () => {
+        let newWin = new BrowserWindow({
+          width: 800,
+          height: 600,
+        });
+
+        win.loadFile("index2.html");
+
+        newWin.on("close", () => {
+          newWin = null;
+        });
+      };
+    </script>
   </body>
   <script src="./renderer.js"></script>
 </html>
